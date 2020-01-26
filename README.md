@@ -1,1 +1,2 @@
-# Algorithms-
+# Algorithm Study From Baekjoon, Leetcode, Sw expert academy and so on...
+# Based on Python3
