@@ -1,0 +1,43 @@
+// L is the array on which median of medians needs to be found.
+// k is the expected median position. E.g. first select call might look like:
+// select (array, N/2), where 'array' is an array of numbers of length N
+
+select(L,k)
+{
+
+    if (L has 5 or fewer elements) {
+        sort L
+        return the element in the kth position
+    }
+
+    partition L into subsets S[i] of five elements each
+        (there will be n/5 subsets total).
+
+    for (i = 1 to n/5) do
+        x[i] = select(S[i],3)
+
+    M = select({x[i]}, n/10)
+
+    // The code to follow ensures that even if M turns out to be the
+    // smallest/largest value in the array, we'll get the kth smallest
+    // element in the array
+
+    // Partition array into three groups based on their value as
+    // compared to median M
+
+    partition L into L1<M, L2=M, L3>M
+
+    // Compare the expected median position k with length of first array L1
+    // Run recursive select over the array L1 if k is less than length
+    // of array L1
+    if (k <= length(L1))
+        return select(L1,k)
+
+    // Check if k falls in L3 array. Recurse accordingly
+    else if (k > length(L1)+length(L2))
+        return select(L3,k-length(L1)-length(L2))
+
+    // Simply return M since k falls in L2
+    else return M
+
+}
