@@ -16,9 +16,6 @@ class Solution:
                 s = i+1
                 tot += tank
                 tank = 0
-        
-        if tank + tot < 0:
-            return -1
-        
+
         else:
             return s

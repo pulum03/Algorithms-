@@ -11,13 +11,15 @@ class Solution:
             farest = max(farest, end)
             
         
-        val = [0] * (farest+1)
+        farest_space = [0] * farest
+        
+        #print(farest_space)
         
         for num,start,end in trips:
             for i in range(start,end):
-                val[i] += num
+                farest_space[i] += num
                 
-                if val[i] > capacity:
+                if farest_space[i] > capacity:
                     return False
                 
         return True
